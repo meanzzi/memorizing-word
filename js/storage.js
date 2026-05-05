@@ -38,9 +38,15 @@ const StorageManager = {
 
     addWord(word, translation) {
         const data = this.load();
+        const trimmedWord = word.trim();
+        
+        // 중복 체크 (대소문자 무시)
+        const isDuplicate = data.words.some(w => w.word.toLowerCase() === trimmedWord.toLowerCase());
+        if (isDuplicate) return null;
+
         const newWord = {
             id: crypto.randomUUID(),
-            word: word.trim(),
+            word: trimmedWord,
             translation: translation.trim(),
             createdAt: new Date().toISOString(),
             updatedAt: new Date().toISOString()
