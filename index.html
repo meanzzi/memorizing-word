@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>영어 암기장</title>
+    <!-- Pretendard Font -->
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+    <!-- Google Material Symbols -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Header -->
+        <header class="header">
+            <h1 class="logo">Voca Master</h1>
+            <div class="header-actions">
+                <button id="theme-toggle" class="icon-button">
+                    <span class="material-symbols-rounded">dark_mode</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Main Content (Word List) -->
+        <main id="main-view" class="view">
+            <div class="list-header">
+                <h2>내 단어장</h2>
+                <button id="start-quiz-btn" class="primary-button">퀴즈 시작</button>
+            </div>
+            <ul id="word-list" class="word-list">
+                <!-- Word items will be injected here -->
+            </ul>
+            <button id="add-word-fab" class="fab">
+                <span class="material-symbols-rounded">add</span>
+            </button>
+        </main>
+
+        <!-- Quiz View (Hidden by default) -->
+        <section id="quiz-view" class="view hidden">
+            <div class="quiz-header">
+                <div class="progress-container">
+                    <div id="quiz-progress-bar" class="progress-bar"></div>
+                </div>
+                <button id="close-quiz-btn" class="icon-button">
+                    <span class="material-symbols-rounded">close</span>
+                </button>
+            </div>
+            <div id="quiz-content">
+                <!-- Quiz questions will be injected here -->
+            </div>
+        </section>
+
+        <!-- Add/Edit Modal (Hidden by default) -->
+        <div id="word-modal" class="modal-overlay hidden">
+            <div class="modal-content">
+                <h3 id="modal-title">단어 추가</h3>
+                <form id="word-form">
+                    <div class="input-group">
+                        <label for="word-input">영단어</label>
+                        <input type="text" id="word-input" required placeholder="예: apple">
+                    </div>
+                    <div class="input-group">
+                        <label for="translation-input">뜻</label>
+                        <input type="text" id="translation-input" required placeholder="예: 사과">
+                    </div>
+                    <div class="modal-actions">
+                        <button type="button" id="cancel-modal-btn" class="secondary-button">취소</button>
+                        <button type="submit" class="primary-button">저장</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/storage.js"></script>
+    <script src="js/speech.js"></script>
+    <script src="js/quiz.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

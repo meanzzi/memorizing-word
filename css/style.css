@@ -1,0 +1,415 @@
+/* Root Variables */
+:root {
+    /* Light Mode */
+    --primary-color: #5e6ad2;
+    --background-color: #ffffff;
+    --surface-color: #f2f4f6;
+    --text-primary: #191f28;
+    --text-secondary: #4e5968;
+    --border-radius: 12px;
+    --transition-speed: 0.25s;
+    --safe-area-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+[data-theme="dark"] {
+    /* Dark Mode */
+    --primary-color: #7c89ff;
+    --background-color: #000000;
+    --surface-color: #1c1c1e;
+    --text-primary: #ffffff;
+    --text-secondary: #b0b8c1;
+}
+
+/* Reset & Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-primary);
+    line-height: 1.6;
+    transition: background-color var(--transition-speed), color var(--transition-speed);
+    word-break: keep-all;
+}
+
+#app {
+    max-width: 600px;
+    margin: 0 auto;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Header */
+.header {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    background-color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    z-index: 100;
+    transition: background-color var(--transition-speed);
+}
+
+[data-theme="dark"] .header {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    color: var(--primary-color);
+}
+
+/* Buttons */
+.icon-button {
+    background: none;
+    border: none;
+    color: var(--text-primary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    border-radius: 50%;
+    transition: background-color 0.2s;
+}
+
+.icon-button:active {
+    background-color: var(--surface-color);
+}
+
+.primary-button {
+    background-color: var(--primary-color);
+    color: #ffffff;
+    border: none;
+    padding: 14px 28px;
+    border-radius: 16px;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: transform 0.1s, opacity 0.2s, box-shadow 0.2s;
+}
+
+.primary-button:active {
+    transform: scale(0.96);
+    opacity: 0.9;
+}
+
+.secondary-button {
+    background-color: var(--surface-color);
+    color: var(--text-primary);
+    border: none;
+    padding: 14px 28px;
+    border-radius: 16px;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+/* FAB */
+.fab {
+    position: fixed;
+    bottom: calc(24px + var(--safe-area-bottom));
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    border-radius: 30px;
+    background-color: var(--primary-color);
+    color: #ffffff;
+    border: none;
+    box-shadow: 0 8px 20px rgba(94, 106, 210, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 90;
+    transition: transform 0.2s;
+}
+
+.fab:active {
+    transform: scale(0.9) rotate(90deg);
+}
+
+/* List Styles */
+.view {
+    padding: 10px 20px 100px;
+    flex: 1;
+}
+
+.list-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.list-header h2 {
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+.word-list {
+    list-style: none;
+}
+
+.word-item {
+    background-color: var(--surface-color);
+    padding: 18px;
+    border-radius: 18px;
+    margin-bottom: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    animation: fadeIn 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    border: 1px solid transparent;
+    transition: transform 0.2s;
+}
+
+.word-item:active {
+    transform: scale(0.98);
+}
+
+.word-info .word-text {
+    font-size: 1.15rem;
+    font-weight: 700;
+    display: block;
+    margin-bottom: 2px;
+}
+
+.word-info .translation-text {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.word-actions {
+    display: flex;
+    gap: 4px;
+}
+
+/* Modal */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    z-index: 1000;
+    backdrop-filter: blur(8px);
+    transition: opacity 0.3s;
+}
+
+.modal-content {
+    background-color: var(--background-color);
+    width: 100%;
+    max-width: 600px;
+    padding: 32px 24px calc(32px + var(--safe-area-bottom));
+    border-radius: 28px 28px 0 0;
+    animation: slideUp 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+}
+
+.modal-content h3 {
+    font-size: 1.4rem;
+    font-weight: 800;
+    margin-bottom: 24px;
+}
+
+.input-group {
+    margin-bottom: 24px;
+}
+
+.input-group label {
+    display: block;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-bottom: 10px;
+    padding-left: 4px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 16px;
+    border-radius: 16px;
+    border: 2px solid var(--surface-color);
+    background-color: var(--surface-color);
+    color: var(--text-primary);
+    font-size: 1.05rem;
+    font-weight: 500;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.input-group input:focus {
+    border-color: var(--primary-color);
+}
+
+.modal-actions {
+    display: flex;
+    gap: 12px;
+}
+
+.modal-actions button {
+    flex: 1;
+}
+
+/* Quiz View */
+.quiz-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px 0;
+    margin-bottom: 32px;
+}
+
+.progress-container {
+    flex: 1;
+    height: 10px;
+    background-color: var(--surface-color);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    background-color: var(--primary-color);
+    width: 0%;
+    transition: width 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    border-radius: 5px;
+}
+
+.quiz-card {
+    background-color: var(--surface-color);
+    padding: 48px 24px;
+    border-radius: 32px;
+    text-align: center;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+    animation: fadeIn 0.5s ease-out;
+}
+
+.quiz-instruction {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-bottom: 16px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.quiz-word, .quiz-translation {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 40px;
+    letter-spacing: -1px;
+}
+
+.quiz-options {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 14px;
+}
+
+.quiz-option-btn {
+    background-color: var(--background-color);
+    color: var(--text-primary);
+    border: 2px solid transparent;
+    padding: 20px;
+    border-radius: 20px;
+    font-size: 1.15rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: border-color 0.2s, transform 0.2s, background-color 0.2s;
+}
+
+.quiz-option-btn:hover {
+    background-color: var(--surface-color);
+}
+
+.quiz-option-btn:active {
+    transform: scale(0.97);
+    border-color: var(--primary-color);
+}
+
+.quiz-input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.quiz-input-group input {
+    width: 100%;
+    padding: 20px;
+    border-radius: 20px;
+    border: 2px solid transparent;
+    background-color: var(--background-color);
+    color: var(--text-primary);
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-align: center;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.quiz-input-group input:focus {
+    border-color: var(--primary-color);
+}
+
+/* Quiz Result */
+.quiz-result {
+    text-align: center;
+    padding: 60px 20px;
+    animation: fadeIn 0.6s ease-out;
+}
+
+.result-score {
+    margin: 40px 0;
+}
+
+.score-num {
+    font-size: 5rem;
+    font-weight: 900;
+    color: var(--primary-color);
+    line-height: 1;
+}
+
+.score-total {
+    font-size: 1.75rem;
+    color: var(--text-secondary);
+    font-weight: 600;
+}
+
+.result-message {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 48px;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideUp {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+}
