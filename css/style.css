@@ -1,6 +1,6 @@
-/* Root Variables */
+/* 루트 변수 설정 */
 :root {
-    /* Light Mode */
+    /* 라이트 모드 색상 */
     --primary-color: #5e6ad2;
     --background-color: #ffffff;
     --surface-color: #f2f4f6;
@@ -12,7 +12,7 @@
 }
 
 [data-theme="dark"] {
-    /* Dark Mode */
+    /* 다크 모드 색상 */
     --primary-color: #7c89ff;
     --background-color: #000000;
     --surface-color: #1c1c1e;
@@ -20,7 +20,7 @@
     --text-secondary: #b0b8c1;
 }
 
-/* Reset & Base Styles */
+/* 기본 스타일 리셋 */
 * {
     margin: 0;
     padding: 0;
@@ -50,7 +50,7 @@ body {
     display: none !important;
 }
 
-/* Header */
+/* 헤더 스타일 */
 .header {
     padding: 20px;
     display: flex;
@@ -75,7 +75,7 @@ body {
     color: var(--primary-color);
 }
 
-/* Buttons */
+/* 버튼 공통 스타일 */
 .icon-button {
     background: none;
     border: none;
@@ -121,7 +121,7 @@ body {
     cursor: pointer;
 }
 
-/* FAB */
+/* 플로팅 액션 버튼 (FAB) */
 .fab {
     position: fixed;
     bottom: calc(24px + var(--safe-area-bottom));
@@ -145,7 +145,7 @@ body {
     transform: scale(0.9) rotate(90deg);
 }
 
-/* List Styles */
+/* 뷰(화면) 레이아웃 */
 .view {
     padding: 10px 20px 100px;
     flex: 1;
@@ -167,6 +167,7 @@ body {
     list-style: none;
 }
 
+/* 단어 아이템 스타일 */
 .word-item {
     background-color: var(--surface-color);
     padding: 18px;
@@ -202,7 +203,7 @@ body {
     gap: 4px;
 }
 
-/* Modal */
+/* 모달창 스타일 */
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -272,7 +273,7 @@ body {
     flex: 1;
 }
 
-/* Quiz View */
+/* 퀴즈 화면 스타일 */
 .quiz-header {
     display: flex;
     align-items: center;
@@ -373,7 +374,7 @@ body {
     border-color: var(--primary-color);
 }
 
-/* Quiz Result */
+/* 퀴즈 결과 화면 */
 .quiz-result {
     text-align: center;
     padding: 60px 20px;
@@ -403,13 +404,18 @@ body {
     margin-bottom: 48px;
 }
 
-/* Animations */
+/* 애니메이션 정의 */
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(15px); }
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* Custom Modal & Toast */
+@keyframes slideUp {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+}
+
+/* 커스텀 모달 및 토스트 스타일 */
 .custom-modal-content {
     border-radius: 28px;
     margin-bottom: 24px;
